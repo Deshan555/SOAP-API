@@ -1,7 +1,7 @@
 
 # PHP SOAP-API
 
-These Are the Requests and Responses from My SOAP Server
+These Are the Requests and Responses from My SOAP Server. Using the SOAP UI, one may check the server requests and responses. 
 
 ### Money Deposit:
 a request for payment, I provided the account name and the amount of money as parameters for this:
