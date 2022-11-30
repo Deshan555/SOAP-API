@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://localhost/SP/server.php" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="Bookcatalog.BookService" targetNamespace="http://localhost/SP/server.php">
+  <types>
+    <xsd:schema targetNamespace="http://localhost/SP/server.php">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+      <xsd:complexType name="Bookcatalog.Withdraw">
+        <xsd:all>
+          <xsd:element name="account_number" type="xsd:int"/>
+          <xsd:element name="money_amount" type="xsd:int"/>
+          <xsd:element name="pin" type="xsd:string"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="Bookcatalog.Deposit">
+        <xsd:all>
+          <xsd:element name="account_number" type="xsd:int"/>
+          <xsd:element name="money_amount" type="xsd:int"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="Bookcatalog.Transfer">
+        <xsd:all>
+          <xsd:element name="account_number" type="xsd:int"/>
+          <xsd:element name="money_amount" type="xsd:int"/>
+          <xsd:element name="pin" type="xsd:string"/>
+          <xsd:element name="to" type="xsd:int"/>
+        </xsd:all>
+      </xsd:complexType>
+    </xsd:schema>
+  </types>
+  <portType name="Bookcatalog.BookServicePort">
+    <operation name="money_withdraw">
+      <input message="tns:money_withdrawIn"/>
+      <output message="tns:money_withdrawOut"/>
+    </operation>
+    <operation name="deposit_money">
+      <input message="tns:deposit_moneyIn"/>
+      <output message="tns:deposit_moneyOut"/>
+    </operation>
+    <operation name="transfer_money">
+      <input message="tns:transfer_moneyIn"/>
+      <output message="tns:transfer_moneyOut"/>
+    </operation>
+  </portType>
+  <binding name="Bookcatalog.BookServiceBinding" type="tns:Bookcatalog.BookServicePort">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="money_withdraw">
+      <soap:operation soapAction="http://localhost/SP/server.php#money_withdraw"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost/SP/server.php"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost/SP/server.php"/>
+      </output>
+    </operation>
+    <operation name="deposit_money">
+      <soap:operation soapAction="http://localhost/SP/server.php#deposit_money"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost/SP/server.php"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost/SP/server.php"/>
+      </output>
+    </operation>
+    <operation name="transfer_money">
+      <soap:operation soapAction="http://localhost/SP/server.php#transfer_money"/>
+      <input>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost/SP/server.php"/>
+      </input>
+      <output>
+        <soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://localhost/SP/server.php"/>
+      </output>
+    </operation>
+  </binding>
+  <message name="money_withdrawIn">
+    <part name="details" type="tns:Bookcatalog.Withdraw"/>
+  </message>
+  <message name="money_withdrawOut">
+    <part name="return" type="xsd:string"/>
+  </message>
+  <message name="deposit_moneyIn">
+    <part name="account_number" type="tns:Bookcatalog.Deposit"/>
+  </message>
+  <message name="deposit_moneyOut">
+    <part name="return" type="xsd:string"/>
+  </message>
+  <message name="transfer_moneyIn">
+    <part name="details" type="tns:Bookcatalog.Transfer"/>
+  </message>
+  <message name="transfer_moneyOut">
+    <part name="return" type="xsd:string"/>
+  </message>
+  <service name="Bookcatalog.BookServiceService">
+    <port name="Bookcatalog.BookServicePort" binding="tns:Bookcatalog.BookServiceBinding">
+      <soap:address location="http://localhost/SP/server.php"/>
+    </port>
+  </service>
+</definitions>
