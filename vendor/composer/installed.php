@@ -1,0 +1,41 @@
+<?php return array(
+    'root' => array(
+        'name' => 'deltastateonline/booksoapapi',
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'reference' => NULL,
+        'type' => 'library',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'dev' => true,
+    ),
+    'versions' => array(
+        'deltastateonline/booksoapapi' => array(
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'reference' => NULL,
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'php2wsdl/php2wsdl' => array(
+            'pretty_version' => '0.6.1',
+            'version' => '0.6.1.0',
+            'reference' => '37c15cdc4cdd15363faf151dc0121ac5595fc513',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../php2wsdl/php2wsdl',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'wingu/reflection' => array(
+            'pretty_version' => '1.0.6',
+            'version' => '1.0.6.0',
+            'reference' => 'c17fc35f40b332e49a997c84beb169b7b5101a37',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../wingu/reflection',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+    ),
+);
