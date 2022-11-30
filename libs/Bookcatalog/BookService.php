@@ -106,7 +106,7 @@ class BookService
 
       $ret = $database->query($sql);
 
-      if($row = $ret > 0)
+      while($row = $ret->fetchArray(SQLITE3_ASSOC))
       {
           $new_amount = $this->get_Balance($account_number)+$money_amount;
 
@@ -123,10 +123,9 @@ class BookService
               return "Your Account Upto date Current Account Balance Is : ".$this->get_Balance($account_number);
           }
       }
-      else
-      {
-          return "Wrong Account Number Detected";
-      }
+      
+       return "Wrong Account Number Detected";
+      
   }
 
   function get_Balance($account_number)
@@ -157,7 +156,7 @@ class BookService
 
           $database = new MyDB();
 
-          $ret = $database->query($sql);
+          $ret = $database->query($sql_validation);
 
           while($row = $ret->fetchArray(SQLITE3_ASSOC))
           {
