@@ -1,13 +1,30 @@
 
-# PHP SOAP-API
+# PHP SOAP Server
 
-These Are the Requests and Responses from My SOAP Server. Using the SOAP UI, one may check the server requests and responses. 
+### Installation
 
-### Money Deposit:
+#### Instructions Setup for Server:
+- Place the Source Zip file in the htdocs/www folder on your localhost.
+- Run that command in CMD after opening the SP folder
+
+```bash
+composer require php2wsdl/php2wsdl
+```
+- the following URL into your browser: http://localhost/SP/server.php?wsdl
+- If you follow the instructions exactly, a browser will display the wsdl file.
+
+
+#### Instructions for Setup Client:
+- The client.python file is located in the client folder. Install the Python Request package using the following command before running client.py
+
+```bash
+pip install requests
+```
+### Demo
+These Are the Requests and Responses from PHP-SOAP Server
+
+#### Money Deposit:
 a request for payment, I provided the account name and the amount of money as parameters for this:
-
-
-
 ```bash
   <soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ser="http://localhost/SP/server.php">
    <soapenv:Header/>
@@ -36,7 +53,7 @@ a request for payment, I provided the account name and the amount of money as pa
 </SOAP-ENV:Envelope>
 ```
 
-### Money Withdraw
+#### Money Withdraw
 
 The system requests three parameters when a user requests to withdraw money from their user accounts.
 Account number for the user Pin Number and Amount of money
@@ -95,7 +112,7 @@ Account number for the user Pin Number and Amount of money
 </SOAP-ENV:Envelope>
 ```
 
-### Money Transfer 
+#### Money Transfer 
 
 When transferring money, our server requests four parameters. This variable is Receiver Account Number User Account Number Pin Number Transfer Amount
 
@@ -154,27 +171,3 @@ The system's response will appear as follows when the user enters the wrong user
 ```
 
 Using the SOAP UI, one may check the server requests and responses.
-
-### Installation
-
-For Create WSDL files from PHP classes.
-
-Install Via Composer : 
-
-```bash
-$ composer require php2wsdl/php2wsdl
-```
-    
-Usage of php2wsdl
-
-```bash
-$class = "Vendor\\MyClass";
-$serviceURI = "http://www.myservice.com/soap";
-$wsdlGenerator = new PHP2WSDL\PHPClass2WSDL($class, $serviceURI);
-// Generate the WSDL from the class adding only the public methods that have @soap annotation.
-$wsdlGenerator->generateWSDL(true);
-// Dump as string
-$wsdlXML = $wsdlGenerator->dump();
-// Or save as file
-$wsdlXML = $wsdlGenerator->save('foo/example.wsdl');
-```
